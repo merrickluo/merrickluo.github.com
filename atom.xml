@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>A.I.&#39;s Blog</title>
+  <subtitle>A.I. writing here.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://merrick.luois.me/"/>
+  <updated>2016-08-21T00:26:46.114Z</updated>
+  <id>https://merrick.luois.me/</id>
+  
+  <author>
+    <name>A.I.</name>
+    <email>merrick@luois.me</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The Ultimate Emacs Entry</title>
+    <link href="https://merrick.luois.me/2016/08/21/ultimate-emacs-entry/"/>
+    <id>https://merrick.luois.me/2016/08/21/ultimate-emacs-entry/</id>
+    <published>2016-08-21T00:18:14.000Z</published>
+    <updated>2016-08-21T00:26:46.114Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Install Hackintosh</title>
+    <link href="https://merrick.luois.me/2016/08/16/hackintosh-with-esxi/"/>
+    <id>https://merrick.luois.me/2016/08/16/hackintosh-with-esxi/</id>
+    <published>2016-08-15T16:36:40.000Z</published>
+    <updated>2016-08-15T16:42:23.385Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>开始使用 Spacemacs</title>
+    <link href="https://merrick.luois.me/2015/12/12/start-use-spacemacs/"/>
+    <id>https://merrick.luois.me/2015/12/12/start-use-spacemacs/</id>
+    <published>2015-12-11T17:14:46.000Z</published>
+    <updated>2016-07-26T15:47:23.356Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="开始使用-Spacemacs"><a href="#开始使用-Spacemacs" class="headerlink" title="开始使用 Spacemacs"></a>开始使用 Spacemacs</h3><p>虽说上一篇 Blog 已经是在很久之前，但是上篇刚说了不爱用 vim 的快捷键，现在就开始用 spacemacs 貌似有些奇怪=。=</p>
+<p>我为什么开始使用 vim 的 keybinding 呢，说来话长，一切都要从坑爹的 Xcode 说起…（省略对 Xcode 的 1w 字吐槽）总之因为 Xcode 无法支持 Emacs 的 keybinding（别说 Karabiner，这玩意儿影响太多东西），然后自带的 keybinding 效率实在太低，于是我不得不开始使用 XVim，然后在背叛 Emacs 的道路上越走越远（强力推荐 Chrome 的插件 cVim）。</p>
+<p>但是我不得不说，spacemacs 确实相当的好用，之前也有试过 oh-my-emacs 等等配置，然后自己也乱七八糟配过一些，都谈不上好用，而且还有一些相当麻烦的问题，虽说 spacemacs 问题也不不少，好在最后都找到了解决方案，下面就来记录一下配置时遇到的一些小问题。</p>
+<h3 id="安装spacemacs"><a href="#安装spacemacs" class="headerlink" title="安装spacemacs"></a>安装spacemacs</h3><p>参见<a href="https://github.com/syl20bnr/spacemacs" target="_blank" rel="external">官方文档</a>，就不再赘述</p>
+<p>装好之后，打开Emacs，</p>
+<pre><code>find-file ~/.spacemacs
+</code></pre><p>开始配置</p>
+<h3 id="Emacs-behind-proxy"><a href="#Emacs-behind-proxy" class="headerlink" title="Emacs behind proxy"></a>Emacs behind proxy</h3><p>要想正常使用软件，第一件事就是配好代理，Emacs 里面的包管理，shell，都是需要代理的，所以第一步就是要配好代理</p>
+<p>在dotspacemacs/user-init() 中</p>
+<pre><code>(setq url-proxy-services
+    &apos;((&quot;no_proxy&quot; . &quot;^\\(localhost\\|10.*\\)&quot;)
+      (&quot;http&quot; . &quot;proxy_host:port&quot;)
+      (&quot;https&quot; . &quot;proxy_host:port&quot;)))
+</code></pre><p>C-x，C-e and you are good to go.<br>这里需要一个 http 的代理，如果用 shadowsocks 转一下就好。</p>
+<h3 id="Fonts"><a href="#Fonts" class="headerlink" title="Fonts"></a>Fonts</h3><p>字体不对简直不想写代码，所以先配好字体</p>
+<p>英文字体</p>
+<pre><code>(setq-default dotspacemacs-default-font &apos;(&quot;Essential PragmataPro&quot;
+                                        :size 14
+                                        :weight normal
+                                        :width normal
+                                        :powerline-scale 1.1))
+</code></pre><p>中文字体</p>
+<pre><code>(dolist (charset &apos;(kana han symbol cjk-misc bopomofo))
+(set-fontset-font (frame-parameter nil &apos;font)
+                  charset (font-spec :family &quot;Source Han Sans SC&quot;
+                                     :size 13)))
+</code></pre><h3 id="Fish-in-Emacs"><a href="#Fish-in-Emacs" class="headerlink" title="Fish in Emacs"></a>Fish in Emacs</h3><p>接下来是比较麻烦的部分，至于为什么要在 Emacs 中用 Fish，没办法，Emacs 党就是喜欢 one to rule them all。</p>
+<p>首先安装 spacemacs 提供的 shell layer 并配置一下默认 shell</p>
+<pre><code>(shell :variables
+        shell-default-term-shell &quot;/usr/local/bin/fish&quot;
+        shell-default-height 30
+        shell-default-position &apos;bottom)
+</code></pre><p>然后打开 ansi-term，你会发现几个问题：</p>
+<p>a) prompt 下面会多出一个回车符号，在 dotspacemacs/user-init() 里加入</p>
+<pre><code>(add-hook &apos;term-mode-hook
+      (lambda ()
+        (toggle-truncate-lines)
+        (make-local-variable &apos;transient-mark-mode)
+        (setq transient-mark-mode nil)))
+</code></pre><p>b) prompt title 显示问题</p>
+<pre><code>find-file ~/.config/fish/config.fish
+</code></pre><p>加上</p>
+<pre><code>function fish_title
+    true
+end
+</code></pre><p>c) fish 的自动提示出现时，会显示一个 4m 并换行，同样在 dotspacemacs/user-init() 中</p>
+<pre><code>(setq system-uses-terminfo nil)
+</code></pre><p>暂且到另一个 terminal 中，如果 emacs 是用 Homebrew 安装的，执行以下命令</p>
+<pre><code>tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
+</code></pre><p>其他安装方法，请自行找到类似目录</p>
+<h3 id="kotlin-mode"><a href="#kotlin-mode" class="headerlink" title="kotlin-mode"></a>kotlin-mode</h3><p>目前 kotlin 官方并没有支持Emacs，只在github上搜到了两个repo，<a href="">这个</a>以及<a href="">这个</a>，目前没有发现有什么区别。</p>
+<p>参照 spacemacs 自定义 layer 的方法并使用以上两个中任意一个即可获得 kotlin 代码的语法高亮显示。</p>
+<h3 id="magit"><a href="#magit" class="headerlink" title="magit"></a>magit</h3><p>magit 的安装非常简单，安装 spacemacs 自带的 git layer 即可，唯一的问题是文档中提到的默认将 magit-status 的 buffer 打开全屏的设置方法失效了，经过一番查询后，现在需要一个第三方的 extesion 才能实现。</p>
+<p>这个在.spacemacs 中搜索一下加在对应位置即可</p>
+<pre><code>(setq dotspacemacs-additional-packages&apos;(fullframe))
+</code></pre><p>dotspacemacs/user-config() 中</p>
+<pre><code>(fullframe magit-status magit-mode-quit-window)
+</code></pre><p>重新同步 packages 即可。</p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><ol>
+<li>补充链接</li>
+</ol>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>2015.12.12 initial version<br>2015.12.13 kotlin-mode 和 magit</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;开始使用-Spacemacs&quot;&gt;&lt;a href=&quot;#开始使用-Spacemacs&quot; class=&quot;headerlink&quot; title=&quot;开始使用 Spacemacs&quot;&gt;&lt;/a&gt;开始使用 Spacemacs&lt;/h3&gt;&lt;p&gt;虽说上一篇 Blog 已经是在很久之前，但是
+    
+    </summary>
+    
+    
+      <category term="emacs" scheme="https://merrick.luois.me/tags/emacs/"/>
+    
+      <category term="spacemacs" scheme="https://merrick.luois.me/tags/spacemacs/"/>
+    
+      <category term="vim" scheme="https://merrick.luois.me/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Mac上更好的使用Emacs快捷键</title>
+    <link href="https://merrick.luois.me/2014/09/10/better_emacs_keymap_on_mac/"/>
+    <id>https://merrick.luois.me/2014/09/10/better_emacs_keymap_on_mac/</id>
+    <published>2014-09-09T17:08:11.000Z</published>
+    <updated>2016-07-26T15:47:23.356Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp; &nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但是代价太大，我反正是放弃了），还是得用到IDE，不过好在的是，各种好用的IDE都是支持修改快捷键的，而且也早有大神们做好了各种Emacs的Keymap供我们使用（吐槽：不论是Eclipse还是Intellij自带的Emacs布局都不好用）。</p>
+<p>&nbsp; &nbsp; 现在回到标题，其实Mac（OS X whatever）对Emacs爱好者可谓又爱又狠，爱的是，大部分编辑文本的地方都能用基本的Emacs光标移动等快捷键，恨的是这个可恶的Option按钮，他完全没办法作为Meta键使用，让我每次都按ESC？你等等，我先去跳个楼。不过好在的是Emacs爱好者们都遇到了这个问题，于是就有了解决方案。</p>
+<p>&nbsp; &nbsp; 大部分的解决方案都是使用Ukulele这个软件重新编辑键盘布局，大致操作就是新建一个键盘布局，然后按住Option键，把所有键值都清掉，保存并放在~/Library/KeyboardLayout/中，最后到语言和输入法中选择这个键盘布局就搞定啦。还有一点要提一下的是，大部分的中文输入法都支持选择键盘布局，所以以后也可以保持在中文输入法状态下搬砖啦。<br>&nbsp; &nbsp;<br>&nbsp; &nbsp; 另外上面的手动方法可能比较麻烦，大致介绍以下原理，这个<a href="http://wordherd.com/keyboards/" target="_blank" rel="external">网站</a>可以直接下载改好的键盘布局文件，直接放进去就能用了。</p>
+<p>&nbsp; &nbsp;最后祝大家敲键盘愉快，小指头健康~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;nbsp; &amp;nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
