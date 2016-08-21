@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>开始使用 Spacemacs | A.I.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开始使用 Spacemacs虽说上一篇 Blog 已经是在很久之前，但是上篇刚说了不爱用 vim 的快捷键，现在就开始用 spacemacs 貌似有些奇怪=。=
+我为什么开始使用 vim 的 keybinding 呢，说来话长，一切都要从坑爹的 Xcode 说起…（省略对 Xcode 的 1w 字吐槽）总之因为 Xcode 无法支持 Emacs 的 keybinding（别说 Karabiner，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开始使用 Spacemacs">
+<meta property="og:url" content="https://merrick.luois.me/2015/12/12/start-use-spacemacs/index.html">
+<meta property="og:site_name" content="A.I.'s Blog">
+<meta property="og:description" content="开始使用 Spacemacs虽说上一篇 Blog 已经是在很久之前，但是上篇刚说了不爱用 vim 的快捷键，现在就开始用 spacemacs 貌似有些奇怪=。=
+我为什么开始使用 vim 的 keybinding 呢，说来话长，一切都要从坑爹的 Xcode 说起…（省略对 Xcode 的 1w 字吐槽）总之因为 Xcode 无法支持 Emacs 的 keybinding（别说 Karabiner，">
+<meta property="og:updated_time" content="2016-07-26T15:47:23.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开始使用 Spacemacs">
+<meta name="twitter:description" content="开始使用 Spacemacs虽说上一篇 Blog 已经是在很久之前，但是上篇刚说了不爱用 vim 的快捷键，现在就开始用 spacemacs 貌似有些奇怪=。=
+我为什么开始使用 vim 的 keybinding 呢，说来话长，一切都要从坑爹的 Xcode 说起…（省略对 Xcode 的 1w 字吐槽）总之因为 Xcode 无法支持 Emacs 的 keybinding（别说 Karabiner，">
+  
+    <link rel="alternative" href="/atom.xml" title="A.I.&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">A.I.&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A.I. writing here.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-start-use-spacemacs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开始使用 Spacemacs
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2015-12-11T17:14:46.000Z" itemprop="datePublished">12-12-2015</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开始使用-Spacemacs"><a href="#开始使用-Spacemacs" class="headerlink" title="开始使用 Spacemacs"></a>开始使用 Spacemacs</h3><p>虽说上一篇 Blog 已经是在很久之前，但是上篇刚说了不爱用 vim 的快捷键，现在就开始用 spacemacs 貌似有些奇怪=。=</p>
+<p>我为什么开始使用 vim 的 keybinding 呢，说来话长，一切都要从坑爹的 Xcode 说起…（省略对 Xcode 的 1w 字吐槽）总之因为 Xcode 无法支持 Emacs 的 keybinding（别说 Karabiner，这玩意儿影响太多东西），然后自带的 keybinding 效率实在太低，于是我不得不开始使用 XVim，然后在背叛 Emacs 的道路上越走越远（强力推荐 Chrome 的插件 cVim）。</p>
+<p>但是我不得不说，spacemacs 确实相当的好用，之前也有试过 oh-my-emacs 等等配置，然后自己也乱七八糟配过一些，都谈不上好用，而且还有一些相当麻烦的问题，虽说 spacemacs 问题也不不少，好在最后都找到了解决方案，下面就来记录一下配置时遇到的一些小问题。</p>
+<h3 id="安装spacemacs"><a href="#安装spacemacs" class="headerlink" title="安装spacemacs"></a>安装spacemacs</h3><p>参见<a href="https://github.com/syl20bnr/spacemacs" target="_blank" rel="external">官方文档</a>，就不再赘述</p>
+<p>装好之后，打开Emacs，</p>
+<pre><code>find-file ~/.spacemacs
+</code></pre><p>开始配置</p>
+<h3 id="Emacs-behind-proxy"><a href="#Emacs-behind-proxy" class="headerlink" title="Emacs behind proxy"></a>Emacs behind proxy</h3><p>要想正常使用软件，第一件事就是配好代理，Emacs 里面的包管理，shell，都是需要代理的，所以第一步就是要配好代理</p>
+<p>在dotspacemacs/user-init() 中</p>
+<pre><code>(setq url-proxy-services
+    &apos;((&quot;no_proxy&quot; . &quot;^\\(localhost\\|10.*\\)&quot;)
+      (&quot;http&quot; . &quot;proxy_host:port&quot;)
+      (&quot;https&quot; . &quot;proxy_host:port&quot;)))
+</code></pre><p>C-x，C-e and you are good to go.<br>这里需要一个 http 的代理，如果用 shadowsocks 转一下就好。</p>
+<h3 id="Fonts"><a href="#Fonts" class="headerlink" title="Fonts"></a>Fonts</h3><p>字体不对简直不想写代码，所以先配好字体</p>
+<p>英文字体</p>
+<pre><code>(setq-default dotspacemacs-default-font &apos;(&quot;Essential PragmataPro&quot;
+                                        :size 14
+                                        :weight normal
+                                        :width normal
+                                        :powerline-scale 1.1))
+</code></pre><p>中文字体</p>
+<pre><code>(dolist (charset &apos;(kana han symbol cjk-misc bopomofo))
+(set-fontset-font (frame-parameter nil &apos;font)
+                  charset (font-spec :family &quot;Source Han Sans SC&quot;
+                                     :size 13)))
+</code></pre><h3 id="Fish-in-Emacs"><a href="#Fish-in-Emacs" class="headerlink" title="Fish in Emacs"></a>Fish in Emacs</h3><p>接下来是比较麻烦的部分，至于为什么要在 Emacs 中用 Fish，没办法，Emacs 党就是喜欢 one to rule them all。</p>
+<p>首先安装 spacemacs 提供的 shell layer 并配置一下默认 shell</p>
+<pre><code>(shell :variables
+        shell-default-term-shell &quot;/usr/local/bin/fish&quot;
+        shell-default-height 30
+        shell-default-position &apos;bottom)
+</code></pre><p>然后打开 ansi-term，你会发现几个问题：</p>
+<p>a) prompt 下面会多出一个回车符号，在 dotspacemacs/user-init() 里加入</p>
+<pre><code>(add-hook &apos;term-mode-hook
+      (lambda ()
+        (toggle-truncate-lines)
+        (make-local-variable &apos;transient-mark-mode)
+        (setq transient-mark-mode nil)))
+</code></pre><p>b) prompt title 显示问题</p>
+<pre><code>find-file ~/.config/fish/config.fish
+</code></pre><p>加上</p>
+<pre><code>function fish_title
+    true
+end
+</code></pre><p>c) fish 的自动提示出现时，会显示一个 4m 并换行，同样在 dotspacemacs/user-init() 中</p>
+<pre><code>(setq system-uses-terminfo nil)
+</code></pre><p>暂且到另一个 terminal 中，如果 emacs 是用 Homebrew 安装的，执行以下命令</p>
+<pre><code>tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
+</code></pre><p>其他安装方法，请自行找到类似目录</p>
+<h3 id="kotlin-mode"><a href="#kotlin-mode" class="headerlink" title="kotlin-mode"></a>kotlin-mode</h3><p>目前 kotlin 官方并没有支持Emacs，只在github上搜到了两个repo，<a href="">这个</a>以及<a href="">这个</a>，目前没有发现有什么区别。</p>
+<p>参照 spacemacs 自定义 layer 的方法并使用以上两个中任意一个即可获得 kotlin 代码的语法高亮显示。</p>
+<h3 id="magit"><a href="#magit" class="headerlink" title="magit"></a>magit</h3><p>magit 的安装非常简单，安装 spacemacs 自带的 git layer 即可，唯一的问题是文档中提到的默认将 magit-status 的 buffer 打开全屏的设置方法失效了，经过一番查询后，现在需要一个第三方的 extesion 才能实现。</p>
+<p>这个在.spacemacs 中搜索一下加在对应位置即可</p>
+<pre><code>(setq dotspacemacs-additional-packages&apos;(fullframe))
+</code></pre><p>dotspacemacs/user-config() 中</p>
+<pre><code>(fullframe magit-status magit-mode-quit-window)
+</code></pre><p>重新同步 packages 即可。</p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><ol>
+<li>补充链接</li>
+</ol>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>2015.12.12 initial version<br>2015.12.13 kotlin-mode 和 magit</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://merrick.luois.me/2015/12/12/start-use-spacemacs/" data-id="cis3zfroh00038xywfwyz2kn5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emacs/">emacs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spacemacs/">spacemacs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/21/ultimate-emacs-entry/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          The Ultimate Emacs Entry Point
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/10/better_emacs_keymap_on_mac/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在Mac上更好的使用Emacs快捷键</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 A.I.<br>
+      <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank">Athena</a> by <a href="http://steven5538.tw" target="_blank">Steven5538</a> | Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

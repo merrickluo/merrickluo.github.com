@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>The Ultimate Emacs Entry Point | A.I.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近对于工具有点疯魔（写不出代码只好折腾下工具了
+At firstEmacs作为一个Lisp Machine，启动时间虽说比其他操作系统快得多，但是由于经常会无意间被关机，导致大家对其启动速度印象深刻。虽说 emacs --daemon 可以部分解决这个问题，但还是无法拯救喜欢乱按 space-q-q的我（spacemacs用户），在这样的情况下呢，启动慢已经不是最让我烦心的事了，由于 emacs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Ultimate Emacs Entry Point">
+<meta property="og:url" content="https://merrick.luois.me/2016/08/21/ultimate-emacs-entry/index.html">
+<meta property="og:site_name" content="A.I.'s Blog">
+<meta property="og:description" content="最近对于工具有点疯魔（写不出代码只好折腾下工具了
+At firstEmacs作为一个Lisp Machine，启动时间虽说比其他操作系统快得多，但是由于经常会无意间被关机，导致大家对其启动速度印象深刻。虽说 emacs --daemon 可以部分解决这个问题，但还是无法拯救喜欢乱按 space-q-q的我（spacemacs用户），在这样的情况下呢，启动慢已经不是最让我烦心的事了，由于 emacs">
+<meta property="og:updated_time" content="2016-08-21T01:59:37.196Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Ultimate Emacs Entry Point">
+<meta name="twitter:description" content="最近对于工具有点疯魔（写不出代码只好折腾下工具了
+At firstEmacs作为一个Lisp Machine，启动时间虽说比其他操作系统快得多，但是由于经常会无意间被关机，导致大家对其启动速度印象深刻。虽说 emacs --daemon 可以部分解决这个问题，但还是无法拯救喜欢乱按 space-q-q的我（spacemacs用户），在这样的情况下呢，启动慢已经不是最让我烦心的事了，由于 emacs">
+  
+    <link rel="alternative" href="/atom.xml" title="A.I.&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">A.I.&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A.I. writing here.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ultimate-emacs-entry" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The Ultimate Emacs Entry Point
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2016-08-21T00:18:14.000Z" itemprop="datePublished">08-21-2016</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近对于工具有点疯魔（写不出代码只好折腾下工具了</p>
+<h3 id="At-first"><a href="#At-first" class="headerlink" title="At first"></a>At first</h3><p>Emacs作为一个Lisp Machine，启动时间虽说比其他操作系统快得多，但是由于经常会无意间被关机，导致大家对其启动速度印象深刻。<br>虽说 <code>emacs --daemon</code> 可以部分解决这个问题，但还是无法拯救喜欢乱按 space-q-q的我（spacemacs用户），在这样的情况下呢，启动慢已经不是最让我烦心的事了，由于 <code>emacs --daemon</code>, 所以大部分的东西我都会用 <code>emacscliet -c</code> 来当作编辑器，如果daemon不小心被我自己干掉了，那么这些操作全部会中断。又得手动 <code>emacs --daemon</code>，总之一个字，烦！</p>
+<h3 id="So-it-becomes"><a href="#So-it-becomes" class="headerlink" title="So it becomes"></a>So it becomes</h3><p>于是就有了这么一个脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"></div><div class="line"><span class="comment"># making fcitx working in emacs</span></div><div class="line">client=<span class="string">"emacsclient"</span></div><div class="line"></div><div class="line"><span class="comment"># I dont want to start a new frame if there is one</span></div><div class="line">frame_count=`emacsclient <span class="_">-e</span> <span class="string">'(true-frame-count)'</span> 2&gt;/dev/null || <span class="built_in">echo</span> -1`</div><div class="line"></div><div class="line"><span class="comment"># start server if not started </span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$frame_count</span> <span class="_">-lt</span> 0 ]; <span class="keyword">then</span></div><div class="line">    LC_CTYPE=zh_CN.UTF-8 emacs --daemon</div><div class="line">    client=<span class="string">"<span class="variable">$client</span> -c"</span></div><div class="line">    <span class="comment"># make frame if no param coming</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$frame_count</span> <span class="_">-lt</span> 1 ]; <span class="keyword">then</span></div><div class="line">    client=<span class="string">"<span class="variable">$client</span> -c"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="variable">$client</span> <span class="variable">$@</span> 2&gt;/dev/null</div></pre></td></tr></table></figure>
+<p>and in emacs init script:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> true-frame-count()</div><div class="line">  (<span class="name">length</span></div><div class="line">   (<span class="name">remove-if</span></div><div class="line">    (<span class="name">lambda</span>(<span class="name">f</span>) (<span class="name">string-equal</span> (<span class="name">terminal-name</span> f) <span class="string">"initial_terminal"</span>))</div><div class="line">    (<span class="name">frame-list</span>))))</div></pre></td></tr></table></figure></p>
+<p>因为如果以 <code>--daemon</code> 模式启动，就会有这样一个叫做 initial_terminal的frame强行说自己visible。</p>
+<p>and in i3 config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># emacs</div><div class="line">focus_on_window_activation focus</div></pre></td></tr></table></figure></p>
+<p>以上后两步的作用是如果当前已经有可见的Frame，就不再打开新的，并且直接跳转到该Frame所在的workspace。</p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>大概会看看用Automator怎么在OSX哦不，是macOS上实现类似的功能。（改名字真好玩，反正改名字的人不用搜索）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://merrick.luois.me/2016/08/21/ultimate-emacs-entry/" data-id="cis3zfrof00028xywo2tyohkq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/12/start-use-spacemacs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开始使用 Spacemacs</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 A.I.<br>
+      <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank">Athena</a> by <a href="http://steven5538.tw" target="_blank">Steven5538</a> | Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

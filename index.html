@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>A.I.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="A.I.'s Blog">
+<meta property="og:url" content="https://merrick.luois.me/index.html">
+<meta property="og:site_name" content="A.I.'s Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A.I.'s Blog">
+  
+    <link rel="alternative" href="/atom.xml" title="A.I.&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">A.I.&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A.I. writing here.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ultimate-emacs-entry" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <a class="article-title" href="/2016/08/21/ultimate-emacs-entry/">The Ultimate Emacs Entry Point</a>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2016-08-21T00:18:14.000Z" itemprop="datePublished">08-21-2016</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近对于工具有点疯魔（写不出代码只好折腾下工具了</p>
+<h3 id="At-first"><a href="#At-first" class="headerlink" title="At first"></a>At first</h3><p>Emacs作为一个Lisp Machine，启动时间虽说比其他操作系统快得多，但是由于经常会无意间被关机，导致大家对其启动速度印象深刻。<br>虽说 <code>emacs --daemon</code> 可以部分解决这个问题，但还是无法拯救喜欢乱按 space-q-q的我（spacemacs用户），在这样的情况下呢，启动慢已经不是最让我烦心的事了，由于 <code>emacs --daemon</code>, 所以大部分的东西我都会用 <code>emacscliet -c</code> 来当作编辑器，如果daemon不小心被我自己干掉了，那么这些操作全部会中断。又得手动 <code>emacs --daemon</code>，总之一个字，烦！</p>
+<h3 id="So-it-becomes"><a href="#So-it-becomes" class="headerlink" title="So it becomes"></a>So it becomes</h3><p>于是就有了这么一个脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"></div><div class="line"><span class="comment"># making fcitx working in emacs</span></div><div class="line">client=<span class="string">"emacsclient"</span></div><div class="line"></div><div class="line"><span class="comment"># I dont want to start a new frame if there is one</span></div><div class="line">frame_count=`emacsclient <span class="_">-e</span> <span class="string">'(true-frame-count)'</span> 2&gt;/dev/null || <span class="built_in">echo</span> -1`</div><div class="line"></div><div class="line"><span class="comment"># start server if not started </span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$frame_count</span> <span class="_">-lt</span> 0 ]; <span class="keyword">then</span></div><div class="line">    LC_CTYPE=zh_CN.UTF-8 emacs --daemon</div><div class="line">    client=<span class="string">"<span class="variable">$client</span> -c"</span></div><div class="line">    <span class="comment"># make frame if no param coming</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$frame_count</span> <span class="_">-lt</span> 1 ]; <span class="keyword">then</span></div><div class="line">    client=<span class="string">"<span class="variable">$client</span> -c"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="variable">$client</span> <span class="variable">$@</span> 2&gt;/dev/null</div></pre></td></tr></table></figure>
+<p>and in emacs init script:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> true-frame-count()</div><div class="line">  (<span class="name">length</span></div><div class="line">   (<span class="name">remove-if</span></div><div class="line">    (<span class="name">lambda</span>(<span class="name">f</span>) (<span class="name">string-equal</span> (<span class="name">terminal-name</span> f) <span class="string">"initial_terminal"</span>))</div><div class="line">    (<span class="name">frame-list</span>))))</div></pre></td></tr></table></figure></p>
+<p>因为如果以 <code>--daemon</code> 模式启动，就会有这样一个叫做 initial_terminal的frame强行说自己visible。</p>
+<p>and in i3 config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># emacs</div><div class="line">focus_on_window_activation focus</div></pre></td></tr></table></figure></p>
+<p>以上后两步的作用是如果当前已经有可见的Frame，就不再打开新的，并且直接跳转到该Frame所在的workspace。</p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>大概会看看用Automator怎么在OSX哦不，是macOS上实现类似的功能。（改名字真好玩，反正改名字的人不用搜索）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://merrick.luois.me/2016/08/21/ultimate-emacs-entry/" data-id="cis3zfrof00028xywo2tyohkq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-start-use-spacemacs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <a class="article-title" href="/2015/12/12/start-use-spacemacs/">开始使用 Spacemacs</a>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2015-12-11T17:14:46.000Z" itemprop="datePublished">12-12-2015</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开始使用-Spacemacs"><a href="#开始使用-Spacemacs" class="headerlink" title="开始使用 Spacemacs"></a>开始使用 Spacemacs</h3><p>虽说上一篇 Blog 已经是在很久之前，但是上篇刚说了不爱用 vim 的快捷键，现在就开始用 spacemacs 貌似有些奇怪=。=</p>
+<p>我为什么开始使用 vim 的 keybinding 呢，说来话长，一切都要从坑爹的 Xcode 说起…（省略对 Xcode 的 1w 字吐槽）总之因为 Xcode 无法支持 Emacs 的 keybinding（别说 Karabiner，这玩意儿影响太多东西），然后自带的 keybinding 效率实在太低，于是我不得不开始使用 XVim，然后在背叛 Emacs 的道路上越走越远（强力推荐 Chrome 的插件 cVim）。</p>
+<p>但是我不得不说，spacemacs 确实相当的好用，之前也有试过 oh-my-emacs 等等配置，然后自己也乱七八糟配过一些，都谈不上好用，而且还有一些相当麻烦的问题，虽说 spacemacs 问题也不不少，好在最后都找到了解决方案，下面就来记录一下配置时遇到的一些小问题。</p>
+<h3 id="安装spacemacs"><a href="#安装spacemacs" class="headerlink" title="安装spacemacs"></a>安装spacemacs</h3><p>参见<a href="https://github.com/syl20bnr/spacemacs" target="_blank" rel="external">官方文档</a>，就不再赘述</p>
+<p>装好之后，打开Emacs，</p>
+<pre><code>find-file ~/.spacemacs
+</code></pre><p>开始配置</p>
+<h3 id="Emacs-behind-proxy"><a href="#Emacs-behind-proxy" class="headerlink" title="Emacs behind proxy"></a>Emacs behind proxy</h3><p>要想正常使用软件，第一件事就是配好代理，Emacs 里面的包管理，shell，都是需要代理的，所以第一步就是要配好代理</p>
+<p>在dotspacemacs/user-init() 中</p>
+<pre><code>(setq url-proxy-services
+    &apos;((&quot;no_proxy&quot; . &quot;^\\(localhost\\|10.*\\)&quot;)
+      (&quot;http&quot; . &quot;proxy_host:port&quot;)
+      (&quot;https&quot; . &quot;proxy_host:port&quot;)))
+</code></pre><p>C-x，C-e and you are good to go.<br>这里需要一个 http 的代理，如果用 shadowsocks 转一下就好。</p>
+<h3 id="Fonts"><a href="#Fonts" class="headerlink" title="Fonts"></a>Fonts</h3><p>字体不对简直不想写代码，所以先配好字体</p>
+<p>英文字体</p>
+<pre><code>(setq-default dotspacemacs-default-font &apos;(&quot;Essential PragmataPro&quot;
+                                        :size 14
+                                        :weight normal
+                                        :width normal
+                                        :powerline-scale 1.1))
+</code></pre><p>中文字体</p>
+<pre><code>(dolist (charset &apos;(kana han symbol cjk-misc bopomofo))
+(set-fontset-font (frame-parameter nil &apos;font)
+                  charset (font-spec :family &quot;Source Han Sans SC&quot;
+                                     :size 13)))
+</code></pre><h3 id="Fish-in-Emacs"><a href="#Fish-in-Emacs" class="headerlink" title="Fish in Emacs"></a>Fish in Emacs</h3><p>接下来是比较麻烦的部分，至于为什么要在 Emacs 中用 Fish，没办法，Emacs 党就是喜欢 one to rule them all。</p>
+<p>首先安装 spacemacs 提供的 shell layer 并配置一下默认 shell</p>
+<pre><code>(shell :variables
+        shell-default-term-shell &quot;/usr/local/bin/fish&quot;
+        shell-default-height 30
+        shell-default-position &apos;bottom)
+</code></pre><p>然后打开 ansi-term，你会发现几个问题：</p>
+<p>a) prompt 下面会多出一个回车符号，在 dotspacemacs/user-init() 里加入</p>
+<pre><code>(add-hook &apos;term-mode-hook
+      (lambda ()
+        (toggle-truncate-lines)
+        (make-local-variable &apos;transient-mark-mode)
+        (setq transient-mark-mode nil)))
+</code></pre><p>b) prompt title 显示问题</p>
+<pre><code>find-file ~/.config/fish/config.fish
+</code></pre><p>加上</p>
+<pre><code>function fish_title
+    true
+end
+</code></pre><p>c) fish 的自动提示出现时，会显示一个 4m 并换行，同样在 dotspacemacs/user-init() 中</p>
+<pre><code>(setq system-uses-terminfo nil)
+</code></pre><p>暂且到另一个 terminal 中，如果 emacs 是用 Homebrew 安装的，执行以下命令</p>
+<pre><code>tic -o ~/.terminfo /usr/local/share/emacs/24.5/etc/e/eterm-color.ti
+</code></pre><p>其他安装方法，请自行找到类似目录</p>
+<h3 id="kotlin-mode"><a href="#kotlin-mode" class="headerlink" title="kotlin-mode"></a>kotlin-mode</h3><p>目前 kotlin 官方并没有支持Emacs，只在github上搜到了两个repo，<a href="">这个</a>以及<a href="">这个</a>，目前没有发现有什么区别。</p>
+<p>参照 spacemacs 自定义 layer 的方法并使用以上两个中任意一个即可获得 kotlin 代码的语法高亮显示。</p>
+<h3 id="magit"><a href="#magit" class="headerlink" title="magit"></a>magit</h3><p>magit 的安装非常简单，安装 spacemacs 自带的 git layer 即可，唯一的问题是文档中提到的默认将 magit-status 的 buffer 打开全屏的设置方法失效了，经过一番查询后，现在需要一个第三方的 extesion 才能实现。</p>
+<p>这个在.spacemacs 中搜索一下加在对应位置即可</p>
+<pre><code>(setq dotspacemacs-additional-packages&apos;(fullframe))
+</code></pre><p>dotspacemacs/user-config() 中</p>
+<pre><code>(fullframe magit-status magit-mode-quit-window)
+</code></pre><p>重新同步 packages 即可。</p>
+<h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><ol>
+<li>补充链接</li>
+</ol>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>2015.12.12 initial version<br>2015.12.13 kotlin-mode 和 magit</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://merrick.luois.me/2015/12/12/start-use-spacemacs/" data-id="cis3zfroh00038xywfwyz2kn5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emacs/">emacs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spacemacs/">spacemacs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-better_emacs_keymap_on_mac" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <a class="article-title" href="/2014/09/10/better_emacs_keymap_on_mac/">在Mac上更好的使用Emacs快捷键</a>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2014-09-09T17:08:11.000Z" itemprop="datePublished">09-10-2014</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp; &nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但是代价太大，我反正是放弃了），还是得用到IDE，不过好在的是，各种好用的IDE都是支持修改快捷键的，而且也早有大神们做好了各种Emacs的Keymap供我们使用（吐槽：不论是Eclipse还是Intellij自带的Emacs布局都不好用）。</p>
+<p>&nbsp; &nbsp; 现在回到标题，其实Mac（OS X whatever）对Emacs爱好者可谓又爱又狠，爱的是，大部分编辑文本的地方都能用基本的Emacs光标移动等快捷键，恨的是这个可恶的Option按钮，他完全没办法作为Meta键使用，让我每次都按ESC？你等等，我先去跳个楼。不过好在的是Emacs爱好者们都遇到了这个问题，于是就有了解决方案。</p>
+<p>&nbsp; &nbsp; 大部分的解决方案都是使用Ukulele这个软件重新编辑键盘布局，大致操作就是新建一个键盘布局，然后按住Option键，把所有键值都清掉，保存并放在~/Library/KeyboardLayout/中，最后到语言和输入法中选择这个键盘布局就搞定啦。还有一点要提一下的是，大部分的中文输入法都支持选择键盘布局，所以以后也可以保持在中文输入法状态下搬砖啦。<br>&nbsp; &nbsp;<br>&nbsp; &nbsp; 另外上面的手动方法可能比较麻烦，大致介绍以下原理，这个<a href="http://wordherd.com/keyboards/" target="_blank" rel="external">网站</a>可以直接下载改好的键盘布局文件，直接放进去就能用了。</p>
+<p>&nbsp; &nbsp;最后祝大家敲键盘愉快，小指头健康~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://merrick.luois.me/2014/09/10/better_emacs_keymap_on_mac/" data-id="cis3zfrob00008xywavgajbpn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 A.I.<br>
+      <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank">Athena</a> by <a href="http://steven5538.tw" target="_blank">Steven5538</a> | Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

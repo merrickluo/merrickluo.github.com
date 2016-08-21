@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在Mac上更好的使用Emacs快捷键 | A.I.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;nbsp; &amp;nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但是代价太大，我反正是放弃了），还是得用到IDE，不过好在的是，各种好用的IDE都是支持修改快捷键的，而且也早有大神们做好了各种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Mac上更好的使用Emacs快捷键">
+<meta property="og:url" content="https://merrick.luois.me/2014/09/10/better_emacs_keymap_on_mac/index.html">
+<meta property="og:site_name" content="A.I.'s Blog">
+<meta property="og:description" content="&amp;nbsp; &amp;nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但是代价太大，我反正是放弃了），还是得用到IDE，不过好在的是，各种好用的IDE都是支持修改快捷键的，而且也早有大神们做好了各种">
+<meta property="og:updated_time" content="2016-07-26T15:47:23.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Mac上更好的使用Emacs快捷键">
+<meta name="twitter:description" content="&amp;nbsp; &amp;nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但是代价太大，我反正是放弃了），还是得用到IDE，不过好在的是，各种好用的IDE都是支持修改快捷键的，而且也早有大神们做好了各种">
+  
+    <link rel="alternative" href="/atom.xml" title="A.I.&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">A.I.&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A.I. writing here.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-better_emacs_keymap_on_mac" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在Mac上更好的使用Emacs快捷键
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2014-09-09T17:08:11.000Z" itemprop="datePublished">09-10-2014</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp; &nbsp; 不太记得自己为啥学了Emacs，大概是最开始听说作为程序员Emacs和Vim至少得会用一个，然后觉得Vim各种要按Esc傻傻的，所以就安心学习了Emacs的快捷键。不过要说作为一个Android开发者（虽说你强行要在Emacs中开发也不是不行，但是代价太大，我反正是放弃了），还是得用到IDE，不过好在的是，各种好用的IDE都是支持修改快捷键的，而且也早有大神们做好了各种Emacs的Keymap供我们使用（吐槽：不论是Eclipse还是Intellij自带的Emacs布局都不好用）。</p>
+<p>&nbsp; &nbsp; 现在回到标题，其实Mac（OS X whatever）对Emacs爱好者可谓又爱又狠，爱的是，大部分编辑文本的地方都能用基本的Emacs光标移动等快捷键，恨的是这个可恶的Option按钮，他完全没办法作为Meta键使用，让我每次都按ESC？你等等，我先去跳个楼。不过好在的是Emacs爱好者们都遇到了这个问题，于是就有了解决方案。</p>
+<p>&nbsp; &nbsp; 大部分的解决方案都是使用Ukulele这个软件重新编辑键盘布局，大致操作就是新建一个键盘布局，然后按住Option键，把所有键值都清掉，保存并放在~/Library/KeyboardLayout/中，最后到语言和输入法中选择这个键盘布局就搞定啦。还有一点要提一下的是，大部分的中文输入法都支持选择键盘布局，所以以后也可以保持在中文输入法状态下搬砖啦。<br>&nbsp; &nbsp;<br>&nbsp; &nbsp; 另外上面的手动方法可能比较麻烦，大致介绍以下原理，这个<a href="http://wordherd.com/keyboards/" target="_blank" rel="external">网站</a>可以直接下载改好的键盘布局文件，直接放进去就能用了。</p>
+<p>&nbsp; &nbsp;最后祝大家敲键盘愉快，小指头健康~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://merrick.luois.me/2014/09/10/better_emacs_keymap_on_mac/" data-id="cis3zfrob00008xywavgajbpn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/12/start-use-spacemacs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          开始使用 Spacemacs
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 A.I.<br>
+      <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank">Athena</a> by <a href="http://steven5538.tw" target="_blank">Steven5538</a> | Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
